@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  form#wordcloud-form
+      input.form-control(type='text' name='wordcloud')
+      input.btn.btn-primary(type="submit" value="検索")
+
+  #wordcloud
+
+  script(src='./javascripts/wordcloud2.js')
+  script(src='./javascripts/application.js')
