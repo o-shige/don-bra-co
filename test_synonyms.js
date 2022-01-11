@@ -47,16 +47,16 @@ async function test_getItem() {
 
 async function getItems() {
     const key_word = '人'
-    const obj_word_id = await db.word.findAll({
+    const words = await db.word.findAll({
         where: {
             content: key_word //入力情報から、DBのIDを取得
         }
     })
-    const word = obj_word_id[0]
+    const word = words[0]
 
-    let synonym_list = await word.getSynonyms()
-    synonym_list.forEach(item => {
-        console.log(item.content)
+    let synonyms = await word.getSynonyms()
+    synonyms.forEach(synonym => {
+        console.log(synonym.content)
     })
 }
 getItems();
