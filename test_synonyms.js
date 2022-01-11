@@ -52,29 +52,11 @@ async function getItems() {
             content: key_word //入力情報から、DBのIDを取得
         }
     })
-    const word_id = obj_word_id[0].id;
-    console.log(word_id); // うまくいくことを確認
+    const word = obj_word_id[0]
 
-    const synonym_ids = await db.wordSynonym.findAll({
-        where: {
-            word_id: word_id // 入力情報から割り出したidから、類義語を取得
-        }
-    })
-
-    let synonym_list = []
-    for (let i = 0; i < synonym_ids.length; i++) {
-        //console.log('類義語: ' + synonym_ids[i].synonym_id); // 類義語出します
-        const item = await db.word.findAll({
-                where: {
-                    id: synonym_ids[i].synonym_id
-                }
-            })
-            //console.log('取得したよ: ' + item[0].content);  // 引き出した類義語
-        synonym_list.push(item[0].content);
-    }
-
+    let synonym_list = await word.getSynonyms()
     synonym_list.forEach(item => {
-        console.log(item)
+        console.log(item.content)
     })
 }
 getItems();
