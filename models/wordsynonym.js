@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class wordSynonym extends Model {
     /**
@@ -12,14 +10,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  wordSynonym.init({
-    word_id: DataTypes.INTEGER,
-    synonym_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'wordSynonym',
-    underscored: true,
-  });
+  }
+  wordSynonym.init(
+    {
+      word_id: DataTypes.INTEGER,
+      synonym_id: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "wordSynonym",
+      underscored: true,
+    }
+  );
   return wordSynonym;
 };
